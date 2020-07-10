@@ -14,3 +14,11 @@ download:
 preautospec-checks: download
 	$(NEWURL)
 	-@rm -rf clone_archive
+
+preautospecnew-checks: download
+	$(NEWURL)
+	-@rm -rf clone_archive
+	
+prebuild-checks: download
+	$(NEWURL)
+	-@rm -rf clone_archive
