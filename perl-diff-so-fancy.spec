@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : perl-diff-so-fancy
-Version  : 20.07.10
-Release  : 3
-URL      : file:///insilications/build/clearlinux/packages/perl-diff-so-fancy/perl-diff-so-fancy-20.07.10.tar
-Source0  : file:///insilications/build/clearlinux/packages/perl-diff-so-fancy/perl-diff-so-fancy-20.07.10.tar
+Version  : 1.3.0
+Release  : 4
+URL      : file:///insilications/build/clearlinux/packages/perl-diff-so-fancy/perl-diff-so-fancy-v1.3.0.tar
+Source0  : file:///insilications/build/clearlinux/packages/perl-diff-so-fancy/perl-diff-so-fancy-v1.3.0.tar
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -47,7 +47,7 @@ unset http_proxy
 unset https_proxy
 unset no_proxy
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1594389617
+export SOURCE_DATE_EPOCH=1594390007
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -65,7 +65,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1594389617
+export SOURCE_DATE_EPOCH=1594390007
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
