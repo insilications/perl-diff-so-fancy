@@ -1,0 +1,8 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+perl-fatpacker
+perl-fatpacker-perl
+git
+git-archive-all
+python3-core
+urllib3
