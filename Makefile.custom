@@ -1,16 +1,15 @@
 CURRDIR:=$(shell pwd)
-#BORK_GEN = $(shell git -C clone_archive/ log -1 --date=format:%y.%m.%d --pretty=format:%cd)
-BORK_GEN = $(shell git -C clone_archive/ describe --abbrev=0 || git -C clone_archive/ describe --tags || git -C clone_archive/ log -1 --date=format:%y.%m.%d --pretty=format:%cd)
-NEWURL = $(eval export NEWURL := file://$(CURRDIR)/$(PKG_NAME)-$(BORK_GEN).tar)
+BORK_GEN = $(shell git -C clone_archive/ describe --abbrev=0 --tags || git -C clone_archive/ log -1 --date=format:%y.%m.%d --pretty=format:%cd)
+NEWURL = $(eval export NEWURL := file://$(CURRDIR)/$(PKG_NAME)-$(BORK_GEN).tar.gz)
 
 download:
 	-@rm -rf clone_archive/; \
-	rm $(PKG_NAME)*\.tar; \
+	rm $(PKG_NAME)*\.tar.gz; \
 	git clone --branch $(FROM_BRANCH) $(URL) clone_archive; \
 	curl --location https://raw.githubusercontent.com/insilications/perl-diff-so-fancy-clr/master/CMakeLists.txt -o clone_archive/CMakeLists.txt; \
-	archive_name=$(PKG_NAME)-$$(git -C clone_archive/ describe --abbrev=0 || git -C clone_archive/ describe --tags || git -C clone_archive/ log -1 --date=format:%y.%m.%d --pretty=format:%cd).tar; \
+	archive_name=$(PKG_NAME)-$$(git -C clone_archive/ describe --abbrev=0 --tags || git -C clone_archive/ log -1 --date=format:%y.%m.%d --pretty=format:%cd).tar.gz; \
 	echo $$archive_name; \
-	tar cf $$archive_name clone_archive/;
+	tar --create --gzip --file=$$archive_name clone_archive/;
 
 preautospec-checks: download
 	$(NEWURL)
